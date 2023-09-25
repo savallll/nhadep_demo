@@ -14,15 +14,15 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     public function __construct(){
-        $menu = DB::table('menus')
+        $menu = DB::table('menu')
                 ->select('*')
                 ->get();
-        $menu_items = DB::table('menu_items')
+        $categories = DB::table('categories')
                 ->select('*')
                 ->get();
         View::share([
             'menu'=> $menu,
-            'menu_items'=> $menu_items,
+            'categories'=> $categories,
         ]); // <= Truyền dữ liệu
     }
 }

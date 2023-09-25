@@ -20,8 +20,11 @@
                 src="https://nhadep.com.vn/Uploads/images/banner/thuong-hieu-thuoc-TCTGROUP/noi-that-nha-dep.png"
                 alt=""></a>
         <div class="">
-            <h1 class="pt-2 me-5 text-white"></h1>
+            <h1 class="pt-2 me-5 text-white">abc</h1>
         </div>
+    </div>
+    <div class="mt-4 ms-4 ">
+        <a href="/" class="text-decoration-none"><< Trang chủ</a>
     </div>
     <div class="content ">
         <div class="w-50 mt-5 mx-auto text-center">

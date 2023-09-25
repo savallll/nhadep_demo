@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin">admin</a>
+            <a class="nav-link active" aria-current="page" href="/admin">admin</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -24,7 +24,7 @@
             </ul>
           </li>
           <li class="nav-item ms-auto">
-            <a class="nav-link" href="login">dang nhap</a>
+            <a class="nav-link" href="/login">dang nhap</a>
           </li>
         </ul>
       </div>
@@ -32,19 +32,19 @@
   </nav>
 
   <div class="d-flex mt-4">
-    @foreach ($menu as $menus)
+    @foreach ($menu as $menu_item)
         <div class="dropdown ms-4 mt-4">
             <a class="" type="" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false"    
-                href="/menu/{{ $menus->name }}">
-                {{ $menus->name }}
+                href="/menu/{{ $menu_item->name }}">
+                {{ $menu_item->name }}
             </a>
-            @foreach ($menu_items as $menuitems)
-                @if ($menuitems->menu_id == $menus->id)
+            @foreach ($categories as $category_items)
+                @if ($category_items->menu_id == $menu_item->id)
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach ($menu_items as $menuitems)
-                            @if ($menuitems->menu_id == $menus->id)
+                        @foreach ($categories as $category_items)
+                            @if ($category_items->menu_id == $menu_item->id)
                                 <li><a class="dropdown-item"
-                                        href="/menu/{{ $menuitems->name }}">{{ $menuitems->name }}</a>
+                                        href="/menu/{{ $category_items->name }}">{{ $category_items->name }}</a>
                                 </li>
                             @endif
                         @endforeach
