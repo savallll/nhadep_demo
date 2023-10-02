@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Session;
 
 
 class LoginController extends Controller
@@ -25,16 +26,27 @@ class LoginController extends Controller
         return redirect('/login');
     }
     public function auth(Request $req){
-        $credentials = $req->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        // $credentials = $req->only('email', 'password');
+        $userdata = [    
+            'email' => $req->input('email'),
+            'password' => $req->input('password')
+        ];
+
+        $req->session()->put('user', $userdata['email']);
+        if (Auth::attempt($userdata)) {
             // Đăng nhập thành công, thực hiện hành động mong muốn
             return redirect()->intended('/');
         }
-    
         // Đăng nhập thất bại, hiển thị thông báo lỗi
         return back()->withErrors([
             'email' => 'Thông tin không hợp lệ',
         ]);
+    }
+
+    public function logout(){
+        // Session::forget('user');
+        session::flush();
+        return redirect('/');
     }
     
 }

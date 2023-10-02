@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+
 
 
 
@@ -29,6 +31,12 @@ Route::get('/register',[LoginController::class,'register']);
 Route::post('/register/submit',[LoginController::class,'register_submit']);
 
 Route::get('/menu/{category}',[CategoryController::class,'index']);
+
+Route::get('/product/{product_id}',[ProductController::class,'index']);
+
+Route::get('/user/logout',[LoginController::class,'logout']);
+
+
 
 
 

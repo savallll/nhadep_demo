@@ -17,10 +17,14 @@ class SiteController extends Controller
                 ->select('*')
                 ->get();
 
+        $handbook = DB::table('handbook')
+        ->select('*')
+        ->get();
+            // dd($handbook);
+
         return view('home-page',[
-            // 'menu'=> $menu,
-            // 'menu_items'=> $menu_items,
-            'banner'=> $banner
+            'banner'=> $banner,
+            'handbook'=> $handbook
         ]);
     }
 }
