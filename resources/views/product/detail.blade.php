@@ -71,7 +71,7 @@
                             class="red fw-bold text-success pt-2 fs-5">{{ number_format($product_item->discount, 0, ',', '.') }}
                             đ
                         </label>
-                        <div class="prameter">
+                        <div class="prameter pb-4">
                             <ul>
                                 <li>
                                     <span><b>Kích thước(cm): </b></span>
@@ -83,8 +83,51 @@
                                 </li>
                             </ul>
                         </div>
-                        <a href="javascript:;" class="bg delay" title="">Mua online</a>
-                        <a href="javascript:;" class="bg delay bl" title="">Liên hệ nhận tư vấn</a>
+                        {{-- <a href="javascript:;" class="bg delay" title="">Mua online</a>
+                        <a href="javascript:;" class="bg delay bl" title="">Liên hệ nhận tư vấn</a> --}}
+                        @foreach ($product as $product_item)
+                        {{-- <a href="
+                                @if (Session::has('user'))
+                                    /cart/{{ $product_item->id }}
+                                @else
+                                    /login
+                                @endif 
+                            " 
+                            class="btn btn-warning add-cart"></a> --}}
+                        <div class="d-flex">
+                            <form action="
+                                @if (Session::has('user'))
+                                    /addCart/{{ $product_item->id }}
+                                @else
+                                    /login
+                                @endif " method="post">
+                                @csrf
+                                <input type="hidden"  name="img" value="{{ $product_item->image }}">
+                                <input type="hidden"  name="name" value="{{ $product_item->title }}">
+                                <input type="hidden"  name="price" value="{{ $product_item->price }}">
+                                <input type="hidden"  name="size" value="{{ $product_item->size }}">
+                                <input type="hidden"  name="quantity" value="1">
+                                <button type="submit" class="btn btn-warning add-cart">Thêm vào giỏ hàng</button>
+
+                            </form>
+                            <a href="" class="btn btn-success ms-2">Mua hàng</a>
+                            
+                        </div>
+                        @if ($errors->has('mess'))
+                            <p class="text-danger pt-2">{{ $errors->first('mess') }}</p>
+                        @else
+                            <p class="text-success pt-2">{{ Session::get('success') }}</p>
+                        @endif
+                        @endforeach
+                        {{-- <script>
+                            var button_addcart = document.getelementbyid(add-cart)
+                            var form_add_cart = document.forms['form_add_cart']
+
+                            button_addcart.addEventListener('click', function() {
+                                form_add_cart.action= {{ secsi }}
+                                form_add_cart.submit()
+                            });
+                        </script> --}}
                     </div>
                     {{-- <div class="popup-prameter popup-1">
                     <div class="registration">
@@ -319,8 +362,7 @@
                         </div>
                         @if ($product_item->description != null)
                             <div class="container text-center">
-                                <button class="toggle-button bg-white border-0 fst-italic text-secondary">Xem thêm
-                                    >></button>
+                                <button class="toggle-button bg-white border-0 fst-italic text-secondary">Xem thêm...</button>
                             </div>
                         @endif
                         <script>
@@ -329,21 +371,21 @@
 
                             button.addEventListener('click', function() {
                                 content.classList.toggle('expanded');
-                                if (button.textContent === 'Xem thêm >>') {
-                                    button.textContent = 'Thu gọn <<';
+                                if (button.textContent === 'Xem thêm...') {
+                                    button.textContent = '...Thu gọn';
                                 } else {
-                                    button.textContent = 'Xem thêm >>';
+                                    button.textContent = 'Xem thêm...';
                                 }
                             });
                         </script>
-                        <div class="active-open" style="display: none;">
+                        {{-- <div class="active-open" style="display: none;">
                             <div class="on-list text-center">
                                 <a href="javascript:;" class="delay bg on-detail" title="xem thêm">xem thêm</a>
                             </div>
                             <div class="on-list text-center hidden on-hidden">
                                 <a href="javascript:;" class="delay bg on-hiden" title="Thu gọn">Thu gọn</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
         @endforeach

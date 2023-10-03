@@ -26,13 +26,23 @@ class LoginController extends Controller
         return redirect('/login');
     }
     public function auth(Request $req){
+        
         // $credentials = $req->only('email', 'password');
         $userdata = [    
             'email' => $req->input('email'),
             'password' => $req->input('password')
         ];
 
-        $req->session()->put('user', $userdata['email']);
+        //session user
+        $id_user = DB::table('users')
+            ->select('id')
+            ->where('email',$userdata['email'])
+            ->get();
+            // dd($id_user);
+        $data = json_decode($id_user, true);
+        $id = $data[0]['id'];
+        $req->session()->put('user', $id);
+
         if (Auth::attempt($userdata)) {
             // Đăng nhập thành công, thực hiện hành động mong muốn
             return redirect()->intended('/');

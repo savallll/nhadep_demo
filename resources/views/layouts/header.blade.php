@@ -16,7 +16,7 @@
     <div class="d-flex h-100 align-items-center">
 
         @if (Session::has('user'))
-            <a href="" class="h-25 pe-2"><img src="https://cdn-icons-png.flaticon.com/128/649/649931.png"
+            <a href="/showCart" class="h-25 pe-2"><img src="https://cdn-icons-png.flaticon.com/128/649/649931.png"
                     alt=""></a>
             <div class="dropdown-center d-flex h-25 ps-4">
                 <a class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"

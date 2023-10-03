@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 
@@ -35,6 +36,10 @@ Route::get('/menu/{category}',[CategoryController::class,'index']);
 Route::get('/product/{product_id}',[ProductController::class,'index']);
 
 Route::get('/user/logout',[LoginController::class,'logout']);
+
+Route::post('/addCart/{id}',[CartController::class,'create']);
+
+Route::get('/showCart',[CartController::class,'index']);
 
 
 
